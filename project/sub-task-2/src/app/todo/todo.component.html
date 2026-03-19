@@ -1,1 +1,121 @@
-<!-- Todo Code -->
+<div class="mobile-filter-overlay" [class.open]="showMobileFilter()">
+    <div class="mobile-filter-panel">
+        <div class="mobile-filter-header">
+            <span>FILTERS</span>
+            <button class="close-filter-btn" (click)="showMobileFilter.set(false)">&#10005;</button>
+        </div>
+        <div class="mobile-filter-body">
+            <h2>Creation Date</h2>
+            <input type="date" [ngModel]="filterDateMin()" (ngModelChange)="filterDateMin.set($event)" />
+            <input type="date" [ngModel]="filterDateMax()" (ngModelChange)="filterDateMax.set($event)" />
+            <div class="filter-buttons">
+                <button class="btn btn--primary" (click)="applyFilter()">APPLY</button>
+                <button class="btn btn--secondary" (click)="resetFilter()">RESET</button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-check"></th>
+                        <th class="col-edit-icon"></th>
+                        <th class="col-name">Name <span class="sort-arrow">&#8595;</span></th>
+                        <th class="col-date">Creation Date <span class="sort-arrow">&#8595;</span></th>
+                        <th class="col-delete"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (todo of displayedTodos(); track todo.id) {
+                        <tr>
+                            <td class="col-check">
+                                <input type="checkbox" [checked]="todo.completed" (change)="toggleCompleted(todo)" />
+                            </td>
+                            <td class="col-edit-icon">
+                                <button class="edit-icon-btn" (click)="openEdit(todo)">&#9998;</button>
+                            </td>
+                            <td class="col-name">
+                                <span class="todo-title" [class.completed]="todo.completed">{{ todo.title }}</span>
+                            </td>
+                            <td class="col-date">{{ todo.createdAt }}</td>
+                            <td class="col-delete">
+                                <button class="delete-btn" (click)="deleteTodo(todo.id)">&#128465;</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="edit-panel" [class.open]="editingTodo()">
+    <div class="edit-panel-header">
+        <button class="btn btn--save" (click)="saveEdit()">SAVE</button>
+        <button class="btn btn--close" (click)="closeEdit()">&#10005; CLOSE</button>
+    </div>
+    <div class="edit-panel-body">
+        <h3>Description</h3>
+        <textarea
+            [ngModel]="editTitle()"
+            (ngModelChange)="editTitle.set($event)"
+            placeholder="Enter todo title...">
+        </textarea>
+    </div>
+</div>
+
+<div class="main-wrapper" [class.dimmed]="editingTodo()">
+    <div class="card">
+        <div class="desktop-filter">
+            <h2>Creation Date</h2>
+            <div class="filter-row">
+                <input type="date" [ngModel]="filterDateMin()" (ngModelChange)="filterDateMin.set($event)" />
+                <span class="dash">—</span>
+                <input type="date" [ngModel]="filterDateMax()" (ngModelChange)="filterDateMax.set($event)" />
+                <button class="btn btn--primary" (click)="applyFilter()">APPLY</button>
+                <button class="btn btn--secondary" (click)="resetFilter()">RESET</button>
+            </div>
+        </div>
+
+        <div class="mobile-filter-toggle">
+            <button class="btn btn--primary" (click)="showMobileFilter.set(true)">&#9776; FILTERS</button>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-check"></th>
+                        <th class="col-edit-icon"></th>
+                        <th class="col-name sortable" (click)="sortBy('name')">
+                            Name <span class="sort-arrow">&#8595;</span>
+                        </th>
+                        <th class="col-date sortable" (click)="sortBy('date')">
+                            Creation Date <span class="sort-arrow">&#8595;</span>
+                        </th>
+                        <th class="col-delete"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (todo of displayedTodos(); track todo.id) {
+                        <tr>
+                            <td class="col-check">
+                                <input type="checkbox" [checked]="todo.completed" (change)="toggleCompleted(todo)" />
+                            </td>
+                            <td class="col-edit-icon">
+                                <button class="edit-icon-btn" (click)="openEdit(todo)">&#9998;</button>
+                            </td>
+                            <td class="col-name">
+                                <span class="todo-title" [class.completed]="todo.completed">{{ todo.title }}</span>
+                            </td>
+                            <td class="col-date">{{ todo.createdAt }}</td>
+                            <td class="col-delete">
+                                <button class="delete-btn" (click)="deleteTodo(todo.id)">&#128465;</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

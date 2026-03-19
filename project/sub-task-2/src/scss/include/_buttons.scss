@@ -1,14 +1,43 @@
 .btn {
-    --btn-color: #000;
+    --btn-color: #fff;
     --btn-bg: transparent;
-    --btn-color-hover: transparent;
     --btn-bg-hover: transparent;
 
     color: var(--btn-color);
     background-color: var(--btn-bg);
     display: inline-block;
-    &:focus {}
-    &:hover {}
-    &--primary {}
-}
+    padding: 9px 24px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color 0.2s;
 
+    &:hover {
+        background-color: var(--btn-bg-hover);
+    }
+
+    &--primary {
+        --btn-bg: var(--color-primary);
+        --btn-bg-hover: var(--color-secondary);
+    }
+
+    &--secondary {
+        --btn-bg: var(--color-secondary);
+        --btn-bg-hover: var(--color-primary);
+    }
+
+    &--save {
+        --btn-bg: var(--color-primary);
+        --btn-bg-hover: var(--color-secondary);
+        padding: 9px 20px;
+        letter-spacing: 0.04em;
+    }
+
+    &--close {
+        --btn-bg: var(--color-secondary);
+        --btn-bg-hover: var(--color-primary);
+        padding: 9px 20px;
+        letter-spacing: 0.04em;
+    }
+}

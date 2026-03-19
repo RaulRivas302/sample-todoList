@@ -1,3 +1,5 @@
 import { ITodoBase } from './todo-base.interface';
-
-export interface ITodo extends ITodoBase {}
+ 
+export interface ITodo extends ITodoBase {
+    createdAt: string;
+}
