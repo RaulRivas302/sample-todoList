@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="mobile-filter-overlay" id="mobileFilterOverlay">
+      <div class="mobile-filter-panel">
+        <div class="mobile-filter-header">
+          <span>FILTERS</span>
+          <button class="close-filter-btn" id="closeFilterBtn">&#10005;</button>
+        </div>
+        <div class="mobile-filter-body">
+          <h2>Creation Date</h2>
+          <input type="date" id="mDateMin" placeholder="mm/dd/yyyy" />
+          <input type="date" id="mDateMax" placeholder="mm/dd/yyyy" />
+          <div class="filter-buttons">
+            <button class="btn-apply" id="mApplyBtn">APPLY</button>
+            <button class="btn-reset" id="mResetBtn">RESET</button>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table id="mTodoTable">
+            <thead>
+              <tr>
+                <th class="col-check"></th>
+                <th class="col-edit-icon"></th>
+                <th class="col-name">
+                  Name <span class="sort-arrow">&#8595;</span>
+                </th>
+                <th class="col-date">
+                  Creation Date <span class="sort-arrow">&#8595;</span>
+                </th>
+                <th class="col-delete"></th>
+              </tr>
+            </thead>
+            <tbody id="mTodoBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="edit-panel" id="editPanel">
+      <div class="edit-panel-header">
+        <button class="btn-save" id="saveBtn">&#128190; SAVE</button>
+        <button class="btn-close" id="closeEditBtn">&#10005; CLOSE</button>
+      </div>
+      <div class="edit-panel-body">
+        <h3>Description</h3>
+        <textarea
+          id="editTextarea"
+          placeholder="Lorem Ipsum is simply dummy text of the printing..."
+        ></textarea>
+      </div>
+    </div>
+
+
+    <div class="main-wrapper" id="mainWrapper">
+      <div class="card">
+        <div class="desktop-filter">
+          <h2>Creation Date</h2>
+          <div class="filter-row">
+            <input type="date" id="dateMin" placeholder="mm/dd/yyyy" />
+            <span class="dash">—</span>
+            <input type="date" id="dateMax" placeholder="mm/dd/yyyy" />
+            <button class="btn-apply" id="applyBtn">APPLY</button>
+            <button class="btn-reset" id="resetBtn">RESET</button>
+          </div>
+        </div>
+
+        <div class="mobile-filter-toggle">
+          <button class="btn-filter-open" id="openFilterBtn">
+            &#9776; FILTERS
+          </button>
+        </div>
+
+        <div class="table-wrapper">
+          <table id="todoTable">
+            <thead>
+              <tr>
+                <th class="col-check"></th>
+                <th class="col-edit-icon"></th>
+                <th class="col-name sortable" id="sortName">
+                  Name <span class="sort-arrow">&#8595;</span>
+                </th>
+                <th class="col-date sortable" id="sortDate">
+                  Creation Date <span class="sort-arrow">&#8595;</span>
+                </th>
+                <th class="col-delete"></th>
+              </tr>
+            </thead>
+            <tbody id="todoBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
